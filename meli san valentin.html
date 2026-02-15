@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Melissa ❤️ Feliz San Valentín</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #ffeef8 0%, #ffe0f0 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .card-container {
+            perspective: 1500px;
+        }
+
+        .card {
+            width: 450px;
+            height: 700px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.4, 0.2, 0.2, 1);
+            cursor: pointer;
+        }
+
+        @media (max-width: 500px) {
+            .card {
+                width: 95vw;
+                height: 90vh;
+                max-height: 750px;
+            }
+        }
+
+        .card.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(219, 39, 119, 0.3);
+        }
+
+        .card-front {
+            background: linear-gradient(135deg, #fff 0%, #ffe4e6 100%);
+            border: 3px solid #dc2626;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+        }
+
+        .card-back {
+            background: linear-gradient(135deg, #fff5f7 0%, #ffe4e8 100%);
+            border: 3px solid #dc2626;
+            transform: rotateY(180deg);
+            padding: 30px 25px;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: #dc2626 #ffe4e6;
+        }
+
+        .card-back::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .card-back::-webkit-scrollbar-track {
+            background: #ffe4e6;
+            border-radius: 10px;
+        }
+
+        .card-back::-webkit-scrollbar-thumb {
+            background: #dc2626;
+            border-radius: 10px;
+        }
+
+        .card-back::-webkit-scrollbar-thumb:hover {
+            background: #be123c;
+        }
+
+        .heart-container {
+            position: relative;
+            margin-bottom: 20px;
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+            50% { transform: scale(1); }
+        }
+
+        .heart {
+            width: 100px;
+            height: 100px;
+            position: relative;
+        }
+
+        .heart:before,
+        .heart:after {
+            content: "";
+            position: absolute;
+            top: 0;
+            width: 52px;
+            height: 80px;
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            border-radius: 50px 50px 0 0;
+        }
+
+        .heart:before {
+            left: 50px;
+            transform: rotate(-45deg);
+            transform-origin: 0 100%;
+        }
+
+        .heart:after {
+            left: 0;
+            transform: rotate(45deg);
+            transform-origin: 100% 100%;
+        }
+
+        .roses {
+            font-size: 50px;
+            margin: 20px 0;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        h1 {
+            color: #dc2626;
+            font-size: 32px;
+            margin: 20px 0 10px;
+            text-align: center;
+            font-family: 'Brush Script MT', cursive;
+        }
+
+        .subtitle {
+            color: #be123c;
+            font-size: 18px;
+            text-align: center;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .tap-hint {
+            color: #9f1239;
+            font-size: 14px;
+            text-align: center;
+            animation: pulse 2s ease-in-out infinite;
+            margin-top: 20px;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+
+        .message {
+            color: #4a0e0e;
+            font-size: 16px;
+            line-height: 1.7;
+            text-align: center;
+            margin-bottom: 18px;
+        }
+
+        .taylor-quote {
+            background: linear-gradient(135deg, #fecaca 0%, #fca5a5 100%);
+            border-left: 4px solid #dc2626;
+            padding: 18px 22px;
+            margin: 20px 0;
+            border-radius: 8px;
+            font-style: italic;
+            color: #7f1d1d;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .taylor-quote a {
+            color: #991b1b;
+            text-decoration: none;
+            border-bottom: 2px dotted #dc2626;
+            transition: all 0.3s ease;
+        }
+
+        .taylor-quote a:hover {
+            color: #dc2626;
+            border-bottom: 2px solid #dc2626;
+        }
+
+        .taylor-quote:before {
+            content: '"';
+            font-size: 30px;
+            color: #dc2626;
+            margin-right: 5px;
+        }
+
+        .taylor-quote:after {
+            content: '"';
+            font-size: 30px;
+            color: #dc2626;
+            margin-left: 5px;
+        }
+
+        .signature {
+            text-align: right;
+            color: #be123c;
+            font-size: 20px;
+            margin-top: 30px;
+            font-family: 'Brush Script MT', cursive;
+        }
+
+        .decorative-hearts {
+            position: absolute;
+            font-size: 20px;
+            opacity: 0.3;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .heart1 { top: 10%; left: 5%; animation-delay: 0s; }
+        .heart2 { top: 80%; right: 5%; animation-delay: 1s; }
+        .heart3 { top: 30%; right: 10%; animation-delay: 2s; }
+        .heart4 { bottom: 20%; left: 8%; animation-delay: 1.5s; }
+
+        .music-note {
+            color: #dc2626;
+            margin: 0 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="decorative-hearts heart1">❤️</div>
+    <div class="decorative-hearts heart2">🔥</div>
+    <div class="decorative-hearts heart3">💖</div>
+    <div class="decorative-hearts heart4">🔥</div>
+
+    <div class="card-container">
+        <div class="card" onclick="this.classList.toggle('flipped')">
+            <!-- Frente de la tarjeta -->
+            <div class="card-face card-front">
+                <div class="heart-container">
+                    <div class="heart"></div>
+                </div>
+                <div class="roses">🌹🌹🌹</div>
+                <h1>Para Melissa</h1>
+                <p class="subtitle">Feliz Día de San Valentín</p>
+                <p class="tap-hint">✨ Toca para abrir ✨</p>
+            </div>
+
+            <!-- Reverso de la tarjeta -->
+            <div class="card-face card-back">
+                <h1 style="margin-bottom: 20px;">Melissa, Mi Amor ❤️</h1>
+                
+                <p class="message">
+                    A veces me doy cuenta de que he estado buscando y ansiando algo tan maravilloso y tan puro como lo es tu amor. 
+                    Siento que es tan perfecto, tal cual como yo lo hubiera soñado en alguno de mis sueños más perfectos.
+                </p>
+
+                <p class="message">
+                    Siento y aspiro con ansias tenerte entre mis brazos, sentir tu olor y poder disfrutar de la miel de tus labios. 
+                    Eres mi lugar seguro. Me reconforta la sensación del deseo que siento cada vez que pienso en ti.
+                </p>
+
+                <div class="taylor-quote">
+                    <a href="https://youtu.be/ko70cExuzZM?list=RDko70cExuzZM" target="_blank" style="text-decoration: none;">
+                        <span class="music-note">♫</span>
+                        Late one night you dug me out of my grave and saved my heart from the fate of Ophelia
+                        <span class="music-note">♫</span>
+                    </a>
+                    <div style="text-align: right; margin-top: 10px; font-size: 14px; color: #991b1b;">
+                        - Taylor Swift
+                    </div>
+                </div>
+
+                <p class="message">
+                    Podría escribir cientos y cientos de líneas de cómo te amo y de la forma tan perfecta en la que lo hago, 
+                    pero con toda honestidad, prefiero demostrarlo. Prefiero demostrar con actos la forma de mi amor y cómo esta se encuentra contigo.
+                </p>
+
+                <p class="message">
+                    Con esta forma tan diferente de sentir, te escojo a diario y siento que es la mejor decisión que puedo llegar a tomar. 
+                    Tal cual como la vida, tal cual como despertar todas las mañanas, tal cual como ese aire y esa brisa de la mañana 
+                    que me hace entender que mis talentos como una persona que siente amor no han muerto ni han desaparecido por completo.
+                </p>
+
+                <p class="message">
+                    Te siento como una extensión y un complemento de mi ser mismo, como un lugar donde puedo ser yo mismo 
+                    y no tengo que usar mi armadura como lo haría con los demás.
+                </p>
+
+                <p class="message">
+                    En cada escrito, en cada palabra, en cada gesto de intenso y profundo amor: así como siempre considero que 
+                    toda acción del mundo hacia mí es una declaración de guerra, contigo creo que cada acto intenso que tengo por ti 
+                    es una declaración de mi amor, de mi anhelo por ti y del intenso necesitar de ti cada día más, con más fuerza, 
+                    como la adicción hacia la más fuerte de las drogas que hubiera podido probar.
+                </p>
+
+                <p class="message">
+                    Y como siempre, la más fuerte y la más dulce de todas las emociones que he experimentado siempre será 
+                    el amor y la posesión infinitos que te tengo.
+                </p>
+
+                <p class="message" style="font-weight: bold; color: #dc2626; font-size: 19px; margin-top: 20px;">
+                    Te amo demasiado, incluso más allá de lo que puedas llegar a creer o a comprender. 
+                    Incluso mucho más y mejor de lo que crees que alguien podría llegarlo a hacer.
+                </p>
+
+                <p class="message">
+                    Te amo con mis emociones, con mi ego, con mi ira, con mis perfecciones y mis imperfecciones. 
+                    Te amo con lo intenso y con mi fuego. Te amo tanto que abriría el pecho para usar mi fuego 
+                    y prender todas las velas y así iluminar tu camino hacia mí, tu hogar siempre, toda la vida. 🔥❤️
+                </p>
+
+                <div class="roses" style="font-size: 35px; text-align: center; margin: 25px 0;">
+                    🌹❤️🔥❤️🌹
+                </div>
+
+                <p class="signature">
+                    Con todo mi amor,<br>
+                    Mar ❤️
+                </p>
+
+                <p class="tap-hint" style="margin-top: 25px;">✨ Toca para volver ✨</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Añadir efecto de partículas de corazones al hacer clic
+        document.addEventListener('click', function(e) {
+            createHeart(e.pageX, e.pageY);
+        });
+
+        function createHeart(x, y) {
+            const heart = document.createElement('div');
+            heart.innerHTML = '❤️';
+            heart.style.position = 'fixed';
+            heart.style.left = x + 'px';
+            heart.style.top = y + 'px';
+            heart.style.fontSize = '20px';
+            heart.style.pointerEvents = 'none';
+            heart.style.animation = 'rise 2s ease-out forwards';
+            heart.style.zIndex = '1000';
+            
+            document.body.appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 2000);
+        }
+
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes rise {
+                0% {
+                    opacity: 1;
+                    transform: translateY(0) scale(1);
+                }
+                100% {
+                    opacity: 0;
+                    transform: translateY(-100px) scale(1.5);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
